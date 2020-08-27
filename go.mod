@@ -1,4 +1,4 @@
-module github.com/swatto/promtotwilio
+module github.com/nicolaspn/promtotwilio
 
 go 1.12
 

@@ -8,11 +8,11 @@ The [Docker image](https://hub.docker.com/r/swatto/promtotwilio/) size is less t
 
 ## Configuration
 
-It needs 4 environment variables:
+It needs 5 arguments:
 
+- `PORT` - Listener port
 - `SID` - Twilio Account SID
 - `TOKEN` - Twilio Auth Token
-- `RECEIVER` - Phone number of receiver (optional parameter, representing default receiver)
 - `SENDER` - Phone number managed by Twilio (friendly name)
 
 You can see a basic launch inside the Makefile.
