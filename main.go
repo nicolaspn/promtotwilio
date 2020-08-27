@@ -15,19 +15,22 @@ type options struct {
 }
 
 func main() {
-	opts := options{
-		AccountSid: os.Getenv("SID"),
-		AuthToken:  os.Getenv("TOKEN"),
-		Receiver:   os.Getenv("RECEIVER"),
-		Sender:     os.Getenv("SENDER"),
-	}
+        if len(os.Args) != 5 {
+            fmt.Println("Usage:", os.Args[0], "PORT", "SID", "TOKEN", "SENDER")
+            return
+        }
 
-	if opts.AccountSid == "" || opts.AuthToken == "" || opts.Sender == "" {
-		log.Fatal("'SID', 'TOKEN' and 'SENDER' environment variables need to be set")
+        Port := ":" + os.Args[1]
+        AccountSid: os.Args[2]
+        AuthToken: os.Args[3]
+        Sender: os.Args[4]
+
+	opts := options{
+		Receiver:   os.Getenv("RECEIVER"),
 	}
 
 	o := NewMOptionsWithHandler(&opts)
-	err := fasthttp.ListenAndServe(":9090", o.HandleFastHTTP)
+        err := fasthttp.ListenAndServe(Port, o.HandleFastHTTP)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
