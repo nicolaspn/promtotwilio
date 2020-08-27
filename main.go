@@ -29,6 +29,10 @@ func main() {
 		Receiver:   os.Getenv("RECEIVER"),
 	}
 
+	if opts.AccountSid == "" || opts.AuthToken == "" || opts.Sender == "" {
+		log.Fatal("'SID', 'TOKEN' and 'SENDER' need to be set")
+	}
+
 	o := NewMOptionsWithHandler(&opts)
         err := fasthttp.ListenAndServe(Port, o.HandleFastHTTP)
 	if err != nil {
