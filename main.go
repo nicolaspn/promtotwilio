@@ -19,13 +19,13 @@ func main() {
             fmt.Println("Usage:", os.Args[0], "PORT", "SID", "TOKEN", "SENDER")
             return
         }
-
-        Port := ":" + os.Args[1]
-        AccountSid: os.Args[2]
-        AuthToken: os.Args[3]
-        Sender: os.Args[4]
+        
+	Port := ":" + os.Args[1]
 
 	opts := options{
+        	AccountSid: os.Args[2],
+        	AuthToken: os.Args[3],
+        	Sender: os.Args[4],
 		Receiver:   os.Getenv("RECEIVER"),
 	}
 
