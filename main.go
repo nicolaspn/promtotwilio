@@ -2,7 +2,7 @@ package main
 
 import (
 	"os"
-
+	"fmt"
 	log "github.com/sirupsen/logrus"
 	"github.com/valyala/fasthttp"
 )
