@@ -29,5 +29,5 @@ jobs:
         echo $VERSION
     - uses: actions/upload-artifact@v2
       with:
-        name: promtotwilio_app-${{ env.VERSION }}.zip
+        name: promtotwilio_app-$VERSION.zip
         path: promtotwilio_app.zip
