@@ -12,7 +12,6 @@ It needs 5 arguments:
 - `TOKEN` - Twilio Auth Token
 - `SENDER` - Phone number managed by Twilio (friendly name)
 
-You can see a basic launch inside the Makefile.
 
 ## API
 
@@ -32,54 +31,12 @@ http://localhost:9090/send?receiver=%2Bzxxxyyyyyyy
 
 ## Configuration example
 
-Here's a sample Docker Compose file to use it with [cAdvisor](https://github.com/google/cadvisor), [Prometheus](http://prometheus.io/), [Alertmanager](https://github.com/prometheus/alertmanager) and [Grafana](https://github.com/grafana/grafana).
+fmt.Println("Usage:", os.Args[0], "PORT", "SID", "TOKEN", "SENDER")
 
-```yml
-sms:
-  image: swatto/promtotwilio:latest
-  environment:
-    SID: xxx
-    TOKEN: xxx
-    RECEIVER: xxx
-    SENDER: xxx
+./promtotwilio_app 9090 XXXX AAA 0623456789
 
-alert:
-  image: prom/alertmanager:latest
-  links:
-   - sms
-  volumes:
-   - ./alertmanager.yml:/etc/alertmanager/config.yml
 
-container:
-  image: google/cadvisor:latest
-  volumes:
-   - /:/rootfs:ro
-   - /var/run:/var/run:rw
-   - /sys:/sys:ro
-   - /var/lib/docker/:/var/lib/docker:ro
-
-prometheus:
-  image: prom/prometheus:latest
-  links:
-   - container
-   - alert
-  volumes:
-   - ./prometheus.yml:/etc/prometheus/prometheus.yml
-   - ./alerts.conf:/etc/prometheus/alerts.conf
-  entrypoint: /bin/prometheus -config.file=/etc/prometheus/prometheus.yml -alertmanager.url=http://alert:9093
-
-web:
-  image: grafana/grafana:latest
-  links:
-   - prometheus
-  ports:
-   - "3000:3000"
-  environment:
-    GF_SERVER_ROOT_URL: http://stats.example.com
-    GF_SECURITY_ADMIN_PASSWORD: 123456
-```
-
-Here's the AlertManager config where `sms` will be provided by Docker Compose
+Here's the AlertManager config where `sms` is the host 
 
 ```yml
 route:
