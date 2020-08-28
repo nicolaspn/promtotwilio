@@ -49,6 +49,10 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
+        body: |
+          Changes in this Release
+          - Delete the docker container for create the app zip and create Release download
+          - Change environment var to parameter
         draft: false
         prerelease: false
     - name: Upload Release Asset
