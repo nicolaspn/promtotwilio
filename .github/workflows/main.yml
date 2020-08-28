@@ -23,7 +23,9 @@ jobs:
       run: zip -9 promtotwilio_app.zip promtotwilio_app
     - name: Debug
       run: ls -ltrh
+    - name: version
+      run: VERSION=$(echo ${github.ref}| awk -F/ '{print $3}')
     - uses: actions/upload-artifact@v2
       with:
-        name: promtotwilio_app-${{ github.ref }}.zip
+        name: promtotwilio_app-${{ env.VERSION }}.zip
         path: promtotwilio_app.zip
