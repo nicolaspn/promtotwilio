@@ -17,9 +17,13 @@ jobs:
         go mod download
         CGO_ENABLED=0 go build -installsuffix 'static' -o promtotwilio_app .
     - name: Debug
-      run: ls -ltr
+      run: ls -ltrh
     - name: Create Package zip
       if: github.event_name != 'pull_request'
-      run: zip promtotwilio_app.zip promtotwilio_app
+      run: zip -9 promtotwilio_app.zip promtotwilio_app
     - name: Debug
-      run: ls -ltr
+      run: ls -ltrh
+    - uses: actions/upload-artifact@v2
+      with:
+        name: promtotwilio_app-${{ github.ref }}.zip
+        path: promtotwilio_app.zip
