@@ -66,7 +66,7 @@ func (m OptionsWithHandler) sendRequest(ctx *fasthttp.RequestCtx) {
 				return
 			}
 
-			if (status == "firing" or status == "resolved")  {
+			if status == "firing" || status == "resolved"  {
 				_, err := jsonparser.ArrayEach(body, func(alert []byte, dataType jsonparser.ValueType, offset int, err error) {
 					go sendMessage(sendOptions, alert)
 				}, "alerts")
