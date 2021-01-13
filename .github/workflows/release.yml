@@ -41,6 +41,7 @@ jobs:
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PKG_VERSION: ${{ steps.vars.outputs.tag }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} 
         asset_path: ./promtotwilio_app.zip
