@@ -20,8 +20,8 @@ jobs:
     - name: Create Package zip
       run: zip -9 promtotwilio_app.zip promtotwilio_app
     - name: version
-      run: |
-        echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      id: vars
+      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
